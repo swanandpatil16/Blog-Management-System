@@ -1,0 +1,10 @@
+<div class="close" (click)="closeDialog()">
+    <mat-icon>close</mat-icon>
+</div>
+<div class="comment-part">
+    Comment:
+    <textarea [(ngModel)]="content" rows="10" cols="90"></textarea>
+</div>
+<div>
+    <button mat-raised-button  color="primary" (click)="addComment()">Submit</button>
+</div>

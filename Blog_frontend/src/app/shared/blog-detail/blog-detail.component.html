@@ -1,0 +1,35 @@
+<div *ngIf="blog || blog !== null">
+    <H2>{{blog?.postTitle}}</H2>
+    <div class="postcontent">{{blog?.postContent}}</div>
+    <!-- <div>{{blog?.category}}</div> -->
+    <div class="update-delete-button" *ngIf="isAdmin">
+        <button mat-raised-button color="primary" (click)="updateBlogPost()">Update</button>
+        <button mat-raised-button color="primary" (click)="deleteBlog()">Delete</button>
+    </div>
+    <hr />
+        <div class="menu-options">
+            <div  matBadge={{blog?.favorite}} matBadgePosition="after" matBadgeColor="accent" (click)="onReactionPress('favorite')">
+                <mat-icon>favorite</mat-icon>
+            </div>
+            <div matBadge={{blog?.postlike}} matBadgePosition="after" matBadgeColor="accent" (click)="onReactionPress('thumb_up')">
+                <mat-icon>thumb_up</mat-icon>
+            </div>
+            <div matBadge={{blog?.disLike}} matBadgePosition="after" matBadgeColor="accent" (click)="onReactionPress('thumb_down')">
+                <mat-icon>thumb_down</mat-icon>
+            </div>
+        </div>
+    <hr />
+    <div class="add_comment">
+        <button mat-raised-button  color="primary" (click)="openCommentDialog()">Add Comment</button>
+    </div>
+    <div *ngIf="commentList || commentList !== null" class="comment-list">
+        <hr />
+        <div class="comment-items" *ngFor="let comment of commentList">
+            <div class="content">{{comment?.content}}</div>
+            <div class="user-name"><mat-icon>account_circle</mat-icon>{{comment?.user?.userName}}</div>
+            <div class="blank-line">
+                <hr /> <br />
+            </div>
+        </div>
+    </div>
+</div>

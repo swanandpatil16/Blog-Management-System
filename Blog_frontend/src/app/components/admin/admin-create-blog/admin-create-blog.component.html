@@ -1,0 +1,65 @@
+<div class="create-blog">
+    <form [formGroup]="blogPostForm" (ngSubmit)="createBlog()">
+        <table>
+            <tr>
+                <td class="small">Title</td>
+                <td>
+                    <mat-form-field >
+                        <!-- <mat-label>Title</mat-label> -->
+                        <input type="text" matInput formControlName="title"
+                               placeholder="Add Blog title here">
+                        <mat-error *ngIf="blogPostForm.controls['title'].errors?.['required']">
+                            Title should not be blank
+                        </mat-error>
+                        <mat-error *ngIf="blogPostForm.controls['title'].errors?.['minlength']">
+                            Title should have at least 4 character
+                        </mat-error>
+                      </mat-form-field>
+                </td>
+            </tr>
+             <tr>
+                <td>Content</td>
+                <td>
+                    <mat-form-field >
+                        <!-- <mat-label>Content</mat-label> -->
+                        <textarea type="text" matInput formControlName="content"
+                               placeholder="Add Blog Content here" [rows]="5" cols="50"></textarea>
+                        <mat-error *ngIf="blogPostForm.controls['content'].errors?.['required']">
+                            Content should not be blank
+                        </mat-error>
+                        <mat-error *ngIf="blogPostForm.controls['content'].errors?.['minlength']">
+                            content should have at least 4 character
+                        </mat-error>
+                      </mat-form-field>
+                </td>
+            </tr>
+           <tr>
+                <td>Image</td>
+                <td>
+                    <mat-form-field >
+                        <!-- <mat-label>Image</mat-label> -->
+                        <input type="text" matInput formControlName="postImage"
+                               placeholder="Add image path here">
+                      </mat-form-field>
+                </td>
+            </tr>
+           <tr>
+                <td>Category</td>
+                <td>
+                    <select formControlName="category">
+                        <option *ngFor="let item of getCategoryList" [value]="item?.value">{{item?.name}}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <button mat-raised-button color="primary"> {{isEditMode ? 'Update Blog' : 'Create Blog'}}</button>
+                </td>
+            </tr>
+           </table>
+
+    </form>
+  
+</div>
